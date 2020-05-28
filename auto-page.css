@@ -2,6 +2,67 @@
 	display: none;
 }
 
+auto-toc {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+
+	/* 
+		In some layouts we add negative margin to auto-toc, and corresponding padding to links, so that link background extends to entire width of container
+	*/
+	--auto-toc-outset: 0px;
+	margin-left: calc(-1 * var(--auto-toc-outset));
+	margin-right: calc(-1 * var(--auto-toc-outset));
+}
+.auto-toc-link {
+    display: block;
+    text-decoration: none;
+
+    /* If links wrap, lines should be close together, but there should still be decent vertical gap between adjacent links*/
+    line-height: 1.1;
+    padding: 4px 0;
+
+    padding-left: var(--auto-toc-outset);
+    padding-right: var(--auto-toc-outset);
+
+    /* only used in certain layouts*/
+    --visible-highlight-color: #e4e4e4;
+}
+.auto-toc-link,
+.auto-toc-link:visited {
+	color: blue;
+	color: var(--link-color);
+}
+.auto-toc-link:hover {
+	text-decoration: underline;
+}
+.auto-toc-link-h1 {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.auto-toc-link-h2 {
+}
+.auto-toc-link-h3 {
+    padding-left: 1rem;
+    padding-left: calc(1rem + var(--auto-toc-outset));
+    font-size: 0.9em;
+}
+.auto-toc-link-h4 {
+    padding-left: 2rem;
+    padding-left: calc(2rem + var(--auto-toc-outset));
+    font-size: 0.8em;
+}
+.auto-toc-link-h5 {
+	padding-left: 3rem;
+    padding-left: calc(3rem + var(--auto-toc-outset));
+	font-size: 0.8em;
+}
+.auto-toc-link-h6 {
+	padding-left: 4rem;
+    padding-left: calc(4rem + var(--auto-toc-outset));
+	font-size: 0.8em;
+}
+
 /* Desktop sidebar layout */
 @supports(position: fixed) {@media(min-width: 1000px) {
 	:root {
@@ -20,14 +81,38 @@
 		margin-right: var(--body-margin-left);
 	}
 	.AutoMenu {
+		--menu-horizontal-padding: 1rem;
 		position: fixed;
 		left: 0; top: 0; bottom: 0;
 		overflow-y: auto;
 		width: var(--auto-menu-width);
 		border-right: 1px solid #aaa;
 		box-sizing: border-box;
-		padding: 0 1rem;
+		padding: 0 var(--menu-horizontal-padding);
 	}
+	.AutoMenu-sidebar-hidden {
+		display: none;
+	}
+	.auto-toc-loading .AutoMenu {
+		/*
+			It's better to hide the entire sidebar while the auto-toc is created. Looks better to have the entire thing "flash in", rather than have content shift around.
+		*/
+		visibility: hidden;
+	}
+
+	/*
+		Tell auto-toc to scroll and highlight visible sections.
+		Negative margin on auto-toc and extra padding on all links,
+		so that background extends to entire width of sidebar
+	*/
+	.AutoMenu auto-toc {
+	    --scroll-toc: true;
+	    --auto-toc-outset: var(--menu-horizontal-padding);
+	}
+	.AutoMenu .auto-toc-link-visible {
+	    background-color: var(--visible-highlight-color);
+	}
+
 }}
 /* Mobile "show with button" layout */
 @supports(position: sticky) {@media not all and (min-width: 1000px) {
@@ -63,6 +148,14 @@
 		overflow: auto;
 		box-shadow: 0 0 10px 5px #888;
 	}
+
+	.AutoMenu-active auto-toc {
+	    --auto-toc-outset: var(--body-horizontal-margin);
+	}
+	.AutoMenu-active .auto-toc-link-visible {
+	    background-color: var(--visible-highlight-color);
+	}
+
 	.AutoMenuOpenButton,
 	.AutoMenuCloseButton {
 		display: block;
