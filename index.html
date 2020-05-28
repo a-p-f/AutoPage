@@ -9,17 +9,22 @@
 <script defer src="auto-menu.js"></script>
 <script defer src="auto-toc.js"></script>
 
+<button id="AutoMenuOpenButton" aria-hidden="true">☰</button>
+<aside id="AutoMenu">
+	<div id="AutoMenuCloseWrapper">
+		<button id="AutoMenuCloseButton">✕</button>		
+	</div>
+
+	<auto-toc></auto-toc>
+	<hr>
+	<p><a href="">View On Github</a></p>
+</aside>
+
 <h1>Auto Page</h1>
 <!-- 
 	
  -->
 <!-- <button aria-hidden class="AutoMenuButton" onclick="document.querySelector('.AutoMenu').classList.toggle('AutoMenuVisible');">☰</button> -->
-<aside class="AutoMenu">
-	<!-- <h2 class="AutoMenu-sidebar-hidden">Contents</h2> -->
-	<auto-toc></auto-toc>
-	<hr>
-	<p><a href="">View On Github</a></p>
-</aside>
 <h2>Foo</h2>
 <p>foo...</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
