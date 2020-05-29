@@ -1,18 +1,5 @@
-/*
-	auto-menu.js
-
-	Responsible for creating the menu show/hide button,
-	and showing/hiding the menu.
-
-	Requires auto-menu.css.
-*/
-
 (function() {
 'use strict';
-
-function gID(id) {
-	return document.getElementById(id);
-}
 
 var overflowX, overflowY;
 function lockScroll() {
@@ -34,51 +21,54 @@ function releaseScroll() {
 
 // Prepare the AutoMenu
 (function() {
-	var menu = gID('AutoMenu'); if (!menu) return;
-	var openButton = gID('AutoMenuOpenButton');
-	var closeButton = gID('AutoMenuCloseButton');
+	var menu = document.getElementById('AutoMenu'); 
+	if (!menu) return;
+	menu.classList.add('AutoMenu');
+
 	var isActive = false;
+	var activatedAt = null;
 
-	openButton.onclick = activateMenu;
-	closeButton.onclick = function() {
-		if (isActive) {
-			deactivateMenu();
+	// Create open/close buttons
+	var openButton = (function() {
+		var b = document.createElement('button');
+		b.classList.add('AutoMenuOpenButton');
+		b.setAttribute('aria-hidden', 'true');
+		b.innerText = '☰';
+		b.onclick = activateMenu;
+		menu.parentElement.insertBefore(b, menu);
+		return b;
+	})();
+	var closeButton = (function() {
+		var wrapper = document.createElement('div');
+		wrapper.classList.add('AutoMenuCloseWrapper');
+		menu.insertBefore(wrapper, menu.firstElementChild);
+		var b = document.createElement('button');
+		b.classList.add('AutoMenuCloseButton');
+		b.setAttribute('aria-hidden', 'true');
+		b.innerText = '✕';
+		b.onclick = function() {
+			if (isActive) {
+				deactivateMenu();
+			}
+			else {
+				menu.nextElementSibling.scrollIntoView();
+			}
 		}
-		else {
-			menu.nextElementSibling.scrollIntoView();
-		}
-	}
-
-	// // Create open/close buttons
-	// var openButton = (function() {
-	// 	var b = document.createElement('button');
-	// 	b.classList.add('AutoMenuOpenButton');
-	// 	b.innerText = '☰';
-	// 	b.onclick = activateMenu;
-	// 	menu.parentElement.insertBefore(b, menu);
-	// 	return b;
-	// })();
-	// var closeButton = (function() {
-	// 	var b = document.createElement('button');
-	// 	b.classList.add('AutoMenuCloseButton');
-	// 	b.innerText = '✕';
-	// 	b.onclick = deactivateMenu;
-	// 	menu.insertBefore(b, menu.firstElementChild);
-	// 	return b;
-	// })();
-
-
+		wrapper.appendChild(b);
+		return b;
+	})();
 
 	function activateMenu() {
 		if (isActive) return
 		isActive = true;
-		menu.classList.add('active');
+		activatedAt = Date.now();
 		lockScroll();
+		menu.classList.add('AutoMenu-active');
 	}
 	function deactivateMenu() {
 		if (!isActive) return
 		isActive = false;
-		menu.classList.remove('active');
+		menu.classList.remove('AutoMenu-active');
 		releaseScroll();
 	}
 
@@ -88,6 +78,11 @@ function releaseScroll() {
 			If the document scrolls, it must be because the user clicked a hash-link inside the menu. 
 		*/
 		if (e.target == document) {
+			if (Date.now() - activatedAt < 200) {
+				// This scroll event was caused by the opening of the menu.
+				// Ignore it.
+				return
+			}
 			deactivateMenu();
 		}
 	});

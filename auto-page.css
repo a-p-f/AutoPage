@@ -1,5 +1,9 @@
-#AutoMenuOpenButton, #AutoMenuCloseButton {
+.AutoMenuOpenButton, .AutoMenuCloseButton {
 	display: none;
+}
+.auto-toc-loading,
+.auto-menu-loading {
+	opacity: 0;
 }
 
 auto-toc {
@@ -80,7 +84,7 @@ auto-toc {
 		margin-left: calc(var(--auto-menu-width) + var(--body-margin-left)) !important;
 		margin-right: var(--body-margin-left);
 	}
-	#AutoMenu{
+	.AutoMenu{
 		--menu-horizontal-padding: 1rem;
 		position: fixed;
 		left: 0; top: 0; bottom: 0;
@@ -90,10 +94,10 @@ auto-toc {
 		box-sizing: border-box;
 		padding: 0 var(--menu-horizontal-padding);
 	}
-	#AutoMenu-sidebar-hidden {
+	.AutoMenu-sidebar-hidden {
 		display: none;
 	}
-	.auto-toc-loading #AutoMenu{
+	.auto-toc-loading .AutoMenu{
 		/*
 			It's better to hide the entire sidebar while the auto-toc is created. Looks better to have the entire thing "flash in", rather than have content shift around.
 		*/
@@ -105,17 +109,17 @@ auto-toc {
 		Negative margin on auto-toc and extra padding on all links,
 		so that background extends to entire width of sidebar
 	*/
-	#AutoMenuauto-toc {
+	.AutoMenuauto-toc {
 	    --scroll-toc: true;
 	    --auto-toc-outset: var(--menu-horizontal-padding);
 	}
-	#AutoMenu.auto-toc-link-visible {
+	.AutoMenu.auto-toc-link-visible {
 	    background-color: var(--visible-highlight-color);
 	}
 
 }}
 /* Mobile "show with button" layout */
-@supports(position: sticky) {@media not all and (min-width: 1000px) {
+@media not all and (min-width: 1000px) {
 	:root {
 		/* feel free to override */
 		--body-horizontal-margin: 10px;
@@ -129,7 +133,7 @@ auto-toc {
 		margin-right: var(--body-horizontal-margin) !important;
 		margin-top: 0;
 	}
-	#AutoMenu{
+	.AutoMenu{
 		box-sizing: border-box;
 		width: calc(100% + 2 * var(--body-horizontal-margin));
 		transform: translateX(calc(-1 * var(--body-horizontal-margin)));
@@ -137,28 +141,26 @@ auto-toc {
 		border-bottom: 1px solid #ccc;
 
 		position: relative;
-		z-index: 2;
 		background-color: white;
 	}
-	#AutoMenu.active {
+	.AutoMenu.AutoMenu-active {
 		position: sticky;
 		top: 0;
+		z-index: 100000000000000;
 		max-height: 100vh;
 		overflow: auto;
 		box-shadow: 0 0 10px 5px #888;
 	}
 
-	#AutoMenu.active auto-toc {
+	.AutoMenu.AutoMenu-active auto-toc {
 	    --auto-toc-outset: var(--body-horizontal-margin);
 	}
-	#AutoMenu.active .auto-toc-link-visible {
+	.AutoMenu.AutoMenu-active .auto-toc-link-visible {
 	    background-color: var(--visible-highlight-color);
 	}
 
-	#AutoMenuOpenButton,
-	#AutoMenuCloseButton {
-		display: block;
-
+	.AutoMenuOpenButton,
+	.AutoMenuCloseButton {
 		border: none;
 		margin: 0;
 		color: white;
@@ -169,21 +171,21 @@ auto-toc {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		line-height: 1;
 
 		font-size: 25px;
 		font-weight: bold;
 	}
-	#AutoMenuOpenButton{
+	.AutoMenuOpenButton{
 		background-color: var(--auto-menu-button-background);
 		position: fixed;
 		top: 0; right: 0;
-		z-index: 1;
 	}
-	#AutoMenuCloseWrapper {
+	.AutoMenuCloseWrapper {
 		background-color: var(--auto-menu-button-background);
 		display: flex;
 		justify-content: flex-end;
 		margin-left: calc(-1 * var(--body-horizontal-margin));
 		margin-right: calc(-1 * var(--body-horizontal-margin));
 	}
-}}
+}
