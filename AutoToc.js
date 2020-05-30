@@ -30,8 +30,8 @@ function initializeAutoToc(toc) {
     var links = headings.map(function(h) {
         var a = document.createElement('a');
         a.href = '#' + h.id;
-        a.classList.add('auto-toc-link');
-        a.classList.add('auto-toc-link-'+h.nodeName.toLowerCase());
+        a.classList.add('AutoTocLink');
+        a.classList.add('AutoTocLink-'+h.nodeName.toLowerCase());
         a.innerText = h.innerText;
         toc.appendChild(a);
         return a
@@ -101,7 +101,7 @@ function initializeAutoToc(toc) {
         })();
 
         // Iterate through links, setting visibility class
-        var VISIBLE_CLASS = 'auto-toc-link-visible';
+        var VISIBLE_CLASS = 'AutoTocLink-visible';
         for (i = 0; i < first_highlighted_index; i++) {
             links[i].classList.remove(VISIBLE_CLASS);
         }
@@ -133,4 +133,4 @@ function initializeAutoToc(toc) {
     // Add as method to the element, so that it can be called by outside code
     toc.highlightAndScroll = highlightAndScroll;
 }
-Array.prototype.forEach.call(document.querySelectorAll('auto-toc'), initializeAutoToc);
+Array.prototype.forEach.call(document.querySelectorAll('.AutoToc'), initializeAutoToc);

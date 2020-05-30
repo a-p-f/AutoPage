@@ -2,8 +2,7 @@
 	display: none;
 }
 
-auto-toc {
-	display: block;
+.AutoToc {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 
@@ -14,7 +13,7 @@ auto-toc {
 	margin-left: calc(-1 * var(--auto-toc-outset));
 	margin-right: calc(-1 * var(--auto-toc-outset));
 }
-.auto-toc-link {
+.AutoTocLink {
     display: block;
     text-decoration: none;
 
@@ -28,36 +27,36 @@ auto-toc {
     /* only used in certain layouts*/
     --visible-highlight-color: #e4e4e4;
 }
-.auto-toc-link,
-.auto-toc-link:visited {
+.AutoTocLink,
+.AutoTocLink:visited {
 	color: blue;
 	color: var(--link-color, blue);
 }
-.auto-toc-link:hover {
+.AutoTocLink:hover {
 	text-decoration: underline;
 }
-.auto-toc-link-h1 {
+.AutoTocLink-h1 {
     font-weight: bold;
     font-size: 1.1em;
 }
-.auto-toc-link-h2 {
+.AutoTocLink-h2 {
 }
-.auto-toc-link-h3 {
+.AutoTocLink-h3 {
     padding-left: 1rem;
     padding-left: calc(1rem + var(--auto-toc-outset));
     font-size: 0.9em;
 }
-.auto-toc-link-h4 {
+.AutoTocLink-h4 {
     padding-left: 2rem;
     padding-left: calc(2rem + var(--auto-toc-outset));
     font-size: 0.8em;
 }
-.auto-toc-link-h5 {
+.AutoTocLink-h5 {
 	padding-left: 3rem;
     padding-left: calc(3rem + var(--auto-toc-outset));
 	font-size: 0.8em;
 }
-.auto-toc-link-h6 {
+.AutoTocLink-h6 {
 	padding-left: 4rem;
     padding-left: calc(4rem + var(--auto-toc-outset));
 	font-size: 0.8em;
@@ -93,23 +92,17 @@ auto-toc {
 	.AutoMenu-sidebar-hidden {
 		display: none;
 	}
-	.auto-toc-loading .AutoMenu{
-		/*
-			It's better to hide the entire sidebar while the auto-toc is created. Looks better to have the entire thing "flash in", rather than have content shift around.
-		*/
-		visibility: hidden;
-	}
 
 	/*
-		Tell auto-toc to scroll and highlight visible sections.
-		Negative margin on auto-toc and extra padding on all links,
+		Tell AutoToc to scroll and highlight visible sections.
+		Negative margin on AutoToc and extra padding on all links,
 		so that background extends to entire width of sidebar
 	*/
-	.AutoMenuauto-toc {
+	.AutoMenu .AutoToc {
 	    --scroll-toc: true;
 	    --auto-toc-outset: var(--menu-horizontal-padding);
 	}
-	.AutoMenu.auto-toc-link-visible {
+	.AutoMenu.AutoTocLink-visible {
 	    background-color: var(--visible-highlight-color);
 	}
 
@@ -151,7 +144,7 @@ auto-toc {
 	.AutoMenu.AutoMenu-active auto-toc {
 	    --auto-toc-outset: var(--body-horizontal-margin);
 	}
-	.AutoMenu.AutoMenu-active .auto-toc-link-visible {
+	.AutoMenu.AutoMenu-active .AutoTocLink-visible {
 	    background-color: var(--visible-highlight-color);
 	}
 
