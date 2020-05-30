@@ -120,7 +120,7 @@
 		*/
 		margin-left: var(--body-horizontal-margin) !important;
 		margin-right: var(--body-horizontal-margin) !important;
-		margin-top: 0;
+		margin-top: 0 !important;
 	}
 	.AutoMenu{
 		box-sizing: border-box;
@@ -141,7 +141,7 @@
 		box-shadow: 0 0 10px 5px #888;
 	}
 
-	.AutoMenu.AutoMenu-active auto-toc {
+	.AutoMenu.AutoMenu-active .AutoToc {
 	    --auto-toc-outset: var(--body-horizontal-margin);
 	}
 	.AutoMenu.AutoMenu-active .AutoTocLink-visible {
@@ -151,6 +151,7 @@
 	.AutoMenuOpenButton,
 	.AutoMenuCloseButton {
 		border: none;
+		border-radius: 0;
 		margin: 0;
 		color: white;
 		background-color: transparent;
