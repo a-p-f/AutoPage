@@ -102,7 +102,7 @@
 	    --scroll-toc: true;
 	    --auto-toc-outset: var(--menu-horizontal-padding);
 	}
-	.AutoMenu.AutoTocLink-visible {
+	.AutoMenu .AutoTocLink-visible {
 	    background-color: var(--visible-highlight-color);
 	}
 
