@@ -64,12 +64,16 @@ function releaseScroll() {
 		activatedAt = Date.now();
 		lockScroll();
 		menu.classList.add('AutoMenu-active');
+		menu.setAttribute('aria-modal', 'true');
+		closeButton.focus();
 	}
 	function deactivateMenu() {
 		if (!isActive) return
 		isActive = false;
 		menu.classList.remove('AutoMenu-active');
 		releaseScroll();
+		menu.removeAttribute('aria-modal');
+		openButton.focus();
 	}
 
 	addEventListener('scroll', function(e) {

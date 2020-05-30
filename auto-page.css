@@ -35,7 +35,7 @@ auto-toc {
 .auto-toc-link,
 .auto-toc-link:visited {
 	color: blue;
-	color: var(--link-color);
+	color: var(--link-color, blue);
 }
 .auto-toc-link:hover {
 	text-decoration: underline;

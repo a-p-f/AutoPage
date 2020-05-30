@@ -1,0 +1,16 @@
+:root {
+	--light-border: 1px solid #ccc;
+}
+
+html {
+	font-family: sans-serif;
+	line-height: 1.6;
+}
+
+h2 {
+	border-bottom: var(--light-border);
+}
+hr {
+	border: none;
+	border-bottom: var(--light-border);
+}
