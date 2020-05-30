@@ -92,5 +92,4 @@ function releaseScroll() {
 	});
 })();
 
-document.documentElement.classList.remove('auto-menu-loading');
 })();

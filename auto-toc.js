@@ -134,7 +134,3 @@ function initializeAutoToc(toc) {
     toc.highlightAndScroll = highlightAndScroll;
 }
 Array.prototype.forEach.call(document.querySelectorAll('auto-toc'), initializeAutoToc);
-/*
-    You MAY want to add this class to html element, and hide various other elements (or the entire page) until it is removed.
-*/
-document.documentElement.classList.remove('auto-toc-loading');

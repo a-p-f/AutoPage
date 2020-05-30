@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html class="auto-toc-loading auto-menu-loading">
+<html>
 <title>Auto Page</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" type="text/css" href="base.css">
-<link rel="stylesheet" type="text/css" href="auto-page.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="auto-page.css">
+
 <script defer src="auto-menu.js"></script>
 <script defer src="auto-toc.js"></script>
+
+<!-- 
+	Hide document until the above scripts are done executing.
+	Prevents any jarring flicker/reflow as they mutate the DOM.
+ -->
+<link rel="stylesheet" href="unhide.css">
+<script defer src="unhide.js"></script>
 
 <aside id="AutoMenu">
 	<auto-toc></auto-toc>

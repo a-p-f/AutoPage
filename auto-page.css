@@ -1,10 +1,6 @@
 .AutoMenuOpenButton, .AutoMenuCloseButton {
 	display: none;
 }
-.auto-toc-loading,
-.auto-menu-loading {
-	opacity: 0;
-}
 
 auto-toc {
 	display: block;
